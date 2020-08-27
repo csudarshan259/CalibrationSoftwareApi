@@ -1,0 +1,546 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CalibrationDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CalibrationSchedulingMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TimeWise" Type="varchar(max)" />
+          <Property Name="QuantityWise" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CustomerAddress" Type="nvarchar(max)" />
+          <Property Name="CustomerEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="CustomerContactPersonName" Type="nvarchar" MaxLength="80" />
+          <Property Name="CustomerContactNumber" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DepartmentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GaugeMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GaugeName" Type="varchar" MaxLength="255" />
+          <Property Name="GaugeItemCode" Type="varchar" MaxLength="255" />
+          <Property Name="GaugeType" Type="varchar" MaxLength="255" />
+          <Property Name="GaugeDimAndTolerance" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="ComponentDetails" Type="varchar(max)" />
+          <Property Name="GaugeDrawing" Type="text" />
+          <Property Name="CalibrationScheduling" Type="varchar(max)" />
+          <Property Name="GaugeMaterial" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="GaugeMaterialMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialName" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="GaugeTypeMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GaugeType" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrawingNo" Type="varchar(max)" />
+          <Property Name="Version" Type="varchar" MaxLength="255" />
+          <Property Name="_Index" Type="varchar" MaxLength="255" />
+          <Property Name="PartName" Type="varchar" MaxLength="255" />
+          <Property Name="PartCode" Type="varchar" MaxLength="255" />
+          <Property Name="PartCategory" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="100" />
+          <Property Name="DrawingUpload" Type="text" />
+          <Property Name="ControlPlanUpload" Type="text" />
+          <Property Name="PPAPUpload" Type="text" />
+          <Property Name="BallooningNumber" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ItemMasterDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemMasterID" Type="int" />
+          <Property Name="BaseValue" Type="varchar" MaxLength="20" />
+          <Property Name="LTol" Type="varchar" MaxLength="20" />
+          <Property Name="UTol" Type="varchar" MaxLength="20" />
+          <Property Name="TypeOfGauge" Type="varchar" MaxLength="20" />
+          <Property Name="CalibrationFrequency" Type="varchar" MaxLength="30" />
+          <Property Name="Location" Type="varchar(max)" />
+          <Property Name="Inward" Type="varchar" MaxLength="255" />
+          <Property Name="Production" Type="varchar" MaxLength="255" />
+          <Property Name="QualityRoomLineInspection" Type="varchar" MaxLength="255" />
+          <Property Name="FinalInspection" Type="varchar" MaxLength="255" />
+          <Property Name="BallooningNumber" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="LocationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeasuringInstrumentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOfPurchase" Type="date" />
+          <Property Name="TypeOfInstrument" Type="nvarchar(max)" />
+          <Property Name="Specifications" Type="nvarchar(max)" />
+          <Property Name="GaugeManufacturerID" Type="nvarchar(max)" />
+          <Property Name="GaugeInternalID" Type="nvarchar(max)" />
+          <Property Name="ManufacturerName" Type="nvarchar" MaxLength="255" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="255" />
+          <Property Name="Price" Type="nvarchar" MaxLength="100" />
+          <Property Name="InspectionCalibrationReport" Type="text" />
+          <Property Name="GaugeStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="CalibrationFrequency" Type="nvarchar" MaxLength="50" />
+          <Property Name="DrawingOrOtherDocuments" Type="text" />
+          <Property Name="ManualAttachment" Type="text" />
+        </EntityType>
+        <EntityType Name="PartCategoryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartDetails" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupplierMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactPersonName" Type="nvarchar" MaxLength="80" />
+          <Property Name="ContactNumber" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="40" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="40" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Rights" Type="nvarchar" MaxLength="20" />
+          <Property Name="InsertedOn" Type="datetime" />
+          <Property Name="InsertedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeletedOn" Type="datetime" />
+          <Property Name="DeletedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="80" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityContainer Name="CalibrationDBModel1StoreContainer">
+          <EntitySet Name="CalibrationSchedulingMaster" EntityType="Self.CalibrationSchedulingMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerMaster" EntityType="Self.CustomerMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentMaster" EntityType="Self.DepartmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GaugeMaster" EntityType="Self.GaugeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GaugeMaterialMaster" EntityType="Self.GaugeMaterialMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GaugeTypeMaster" EntityType="Self.GaugeTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemMaster" EntityType="Self.ItemMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemMasterDetails" EntityType="Self.ItemMasterDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationMaster" EntityType="Self.LocationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeasuringInstrumentMaster" EntityType="Self.MeasuringInstrumentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartCategoryMaster" EntityType="Self.PartCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SupplierMaster" EntityType="Self.SupplierMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CalibrationDBModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CalibrationSchedulingMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeWise" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="QuantityWise" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DepartmentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GaugeMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GaugeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GaugeItemCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GaugeType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GaugeDimAndTolerance" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="ComponentDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GaugeDrawing" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CalibrationScheduling" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GaugeMaterial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GaugeMaterialMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GaugeTypeMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GaugeType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MeasuringInstrumentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOfPurchase" Type="DateTime" Precision="0" />
+          <Property Name="TypeOfInstrument" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Specifications" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GaugeManufacturerID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GaugeInternalID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManufacturerName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InspectionCalibrationReport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GaugeStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CalibrationFrequency" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DrawingOrOtherDocuments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ManualAttachment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SupplierMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rights" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InsertedOn" Type="DateTime" Precision="3" />
+          <Property Name="InsertedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="EmailId" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="CalibrationDBEntities4" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CalibrationSchedulingMasters" EntityType="Self.CalibrationSchedulingMaster" />
+          <EntitySet Name="DepartmentMasters" EntityType="Self.DepartmentMaster" />
+          <EntitySet Name="GaugeMasters" EntityType="Self.GaugeMaster" />
+          <EntitySet Name="GaugeMaterialMasters" EntityType="Self.GaugeMaterialMaster" />
+          <EntitySet Name="GaugeTypeMasters" EntityType="Self.GaugeTypeMaster" />
+          <EntitySet Name="LocationMasters" EntityType="Self.LocationMaster" />
+          <EntitySet Name="MeasuringInstrumentMasters" EntityType="Self.MeasuringInstrumentMaster" />
+          <EntitySet Name="SupplierMasters" EntityType="Self.SupplierMaster" />
+          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+          <EntitySet Name="PartCategoryMasters" EntityType="CalibrationDBModel1.PartCategoryMaster" />
+          <EntitySet Name="CustomerMasters" EntityType="CalibrationDBModel1.CustomerMaster" />
+          <EntitySet Name="ItemMasters" EntityType="CalibrationDBModel1.ItemMaster" />
+          <EntitySet Name="ItemMasterDetails" EntityType="CalibrationDBModel1.ItemMasterDetail" />
+        </EntityContainer>
+        <EntityType Name="PartCategoryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartDetails" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CustomerMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerContactPersonName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrawingNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="C_Index" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PartName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PartCode" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PartCategory" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DrawingUpload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ControlPlanUpload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PPAPUpload" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="BallooningNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ItemMasterDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemMasterID" Type="Int32" />
+          <Property Name="BaseValue" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LTol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UTol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TypeOfGauge" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CalibrationFrequency" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Inward" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Production" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="QualityRoomLineInspection" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FinalInspection" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BallooningNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CalibrationDBModel1StoreContainer" CdmEntityContainer="CalibrationDBEntities4">
+          <EntitySetMapping Name="CalibrationSchedulingMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.CalibrationSchedulingMaster">
+              <MappingFragment StoreEntitySet="CalibrationSchedulingMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TimeWise" ColumnName="TimeWise" />
+                <ScalarProperty Name="QuantityWise" ColumnName="QuantityWise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.DepartmentMaster">
+              <MappingFragment StoreEntitySet="DepartmentMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GaugeMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.GaugeMaster">
+              <MappingFragment StoreEntitySet="GaugeMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GaugeName" ColumnName="GaugeName" />
+                <ScalarProperty Name="GaugeItemCode" ColumnName="GaugeItemCode" />
+                <ScalarProperty Name="GaugeType" ColumnName="GaugeType" />
+                <ScalarProperty Name="GaugeDimAndTolerance" ColumnName="GaugeDimAndTolerance" />
+                <ScalarProperty Name="ComponentDetails" ColumnName="ComponentDetails" />
+                <ScalarProperty Name="GaugeDrawing" ColumnName="GaugeDrawing" />
+                <ScalarProperty Name="CalibrationScheduling" ColumnName="CalibrationScheduling" />
+                <ScalarProperty Name="GaugeMaterial" ColumnName="GaugeMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GaugeMaterialMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.GaugeMaterialMaster">
+              <MappingFragment StoreEntitySet="GaugeMaterialMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GaugeTypeMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.GaugeTypeMaster">
+              <MappingFragment StoreEntitySet="GaugeTypeMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GaugeType" ColumnName="GaugeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.LocationMaster">
+              <MappingFragment StoreEntitySet="LocationMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeasuringInstrumentMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.MeasuringInstrumentMaster">
+              <MappingFragment StoreEntitySet="MeasuringInstrumentMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="TypeOfInstrument" ColumnName="TypeOfInstrument" />
+                <ScalarProperty Name="Specifications" ColumnName="Specifications" />
+                <ScalarProperty Name="GaugeManufacturerID" ColumnName="GaugeManufacturerID" />
+                <ScalarProperty Name="GaugeInternalID" ColumnName="GaugeInternalID" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="InspectionCalibrationReport" ColumnName="InspectionCalibrationReport" />
+                <ScalarProperty Name="GaugeStatus" ColumnName="GaugeStatus" />
+                <ScalarProperty Name="CalibrationFrequency" ColumnName="CalibrationFrequency" />
+                <ScalarProperty Name="DrawingOrOtherDocuments" ColumnName="DrawingOrOtherDocuments" />
+                <ScalarProperty Name="ManualAttachment" ColumnName="ManualAttachment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupplierMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.SupplierMaster">
+              <MappingFragment StoreEntitySet="SupplierMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Rights" ColumnName="Rights" />
+                <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+                <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartCategoryMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.PartCategoryMaster">
+              <MappingFragment StoreEntitySet="PartCategoryMaster">
+                <ScalarProperty Name="PartDetails" ColumnName="PartDetails" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.CustomerMaster">
+              <MappingFragment StoreEntitySet="CustomerMaster">
+                <ScalarProperty Name="CustomerContactNumber" ColumnName="CustomerContactNumber" />
+                <ScalarProperty Name="CustomerContactPersonName" ColumnName="CustomerContactPersonName" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemMasters">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.ItemMaster">
+              <MappingFragment StoreEntitySet="ItemMaster">
+                <ScalarProperty Name="BallooningNumber" ColumnName="BallooningNumber" />
+                <ScalarProperty Name="PPAPUpload" ColumnName="PPAPUpload" />
+                <ScalarProperty Name="ControlPlanUpload" ColumnName="ControlPlanUpload" />
+                <ScalarProperty Name="DrawingUpload" ColumnName="DrawingUpload" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="PartCategory" ColumnName="PartCategory" />
+                <ScalarProperty Name="PartCode" ColumnName="PartCode" />
+                <ScalarProperty Name="PartName" ColumnName="PartName" />
+                <ScalarProperty Name="C_Index" ColumnName="_Index" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="DrawingNo" ColumnName="DrawingNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemMasterDetails">
+            <EntityTypeMapping TypeName="CalibrationDBModel1.ItemMasterDetail">
+              <MappingFragment StoreEntitySet="ItemMasterDetails">
+                <ScalarProperty Name="BallooningNumber" ColumnName="BallooningNumber" />
+                <ScalarProperty Name="FinalInspection" ColumnName="FinalInspection" />
+                <ScalarProperty Name="QualityRoomLineInspection" ColumnName="QualityRoomLineInspection" />
+                <ScalarProperty Name="Production" ColumnName="Production" />
+                <ScalarProperty Name="Inward" ColumnName="Inward" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="CalibrationFrequency" ColumnName="CalibrationFrequency" />
+                <ScalarProperty Name="TypeOfGauge" ColumnName="TypeOfGauge" />
+                <ScalarProperty Name="UTol" ColumnName="UTol" />
+                <ScalarProperty Name="LTol" ColumnName="LTol" />
+                <ScalarProperty Name="BaseValue" ColumnName="BaseValue" />
+                <ScalarProperty Name="ItemMasterID" ColumnName="ItemMasterID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
